@@ -8,16 +8,16 @@ NIM-compatible endpoint.
 Custom dataset (data/train.jsonl)
    |
    v
-\[Preprocessor]  -- tokenize, format, train/val split
+\\\[Preprocessor]  -- tokenize, format, train/val split
    |
    v
-\[LoRA Trainer]  -- QLoRA fine-tune (runs on free Colab/Kaggle T4)
+\\\[LoRA Trainer]  -- QLoRA fine-tune (runs on free Colab/Kaggle T4)
    |
    v
-\[Evaluator]    -- before/after accuracy comparison
+\\\[Evaluator]    -- before/after accuracy comparison
    |
    v
-\[Adapter]      -- saved to adapters/ and loadable for inference
+\\\[Adapter]      -- saved to adapters/ and loadable for inference
 ```
 
 Covers **NCA-GENL**: Data Preprocessing, Fine-Tuning, Evaluation, Deployment.
@@ -32,16 +32,16 @@ Covers **NCP-AAI**: Evaluation \& Tuning.
 
 !\[Preprocessing: dataset stats and sample formatted prompt](docs/screenshots/cmd.jpg)
 
-\---
+
 
 ## Training
 
 !\[Training: loss dropping across 3 epochs on T4 GPU](docs/screenshots/table.jpg)
 
-```text
+
 Model : TinyLlama/TinyLlama-1.1B-Chat-v1.0
-LoRA  : r=8, alpha=16, target=q\_proj+v\_proj, dropout=0.05
-Data  : 50 HR policy Q\&A pairs (45 train / 5 val)
+LoRA  : r=8, alpha=16, target=q\\\_proj+v\\\_proj, dropout=0.05
+Data  : 50 HR policy Q\\\&A pairs (45 train / 5 val)
 GPU   : T4 (Google Colab, free tier)
 
 Epoch  Training Loss  Validation Loss  Token Accuracy
@@ -61,7 +61,7 @@ from 64% to 74%, confirming the model is learning the HR domain.
 
 !\[Before fine-tune: base model accuracy 0/10](docs/screenshots/Before-eval.jpg)
 
-```text
+
 Before fine-tune (base model) : 0/10  (0%)
 ```
 
@@ -76,7 +76,7 @@ for every HR policy question.
 
 !\[After fine-tune continued](docs/screenshots/After-eval1.jpg)
 
-```text
+
 After fine-tune (+ LoRA adapter) : 1/10  (10%)
 ```
 
@@ -116,7 +116,7 @@ python -m src.infer --question "What is the parental leave policy?"
 1. Upload this repo to Google Drive
 2. Open a new Colab notebook, mount Drive, cd to the repo
 3. Runtime → Change runtime type → T4 GPU
-4. `pip install -r requirements-train.txt \&\& python -m src.train`
+4. `pip install -r requirements-train.txt \\\&\\\& python -m src.train`
 
 \---
 
@@ -144,7 +144,7 @@ lora-finetune-nim/
 │   ├── evaluate.py           # before/after accuracy comparison
 │   └── infer.py              # load base + adapter, run inference
 ├── data/
-│   ├── train.jsonl           # 50 HR policy Q\&A pairs
+│   ├── train.jsonl           # 50 HR policy Q\\\&A pairs
 │   └── eval.jsonl            # 10 held-out eval pairs
 ├── requirements.txt          # local deps (no GPU)
 ├── requirements-train.txt    # GPU training deps
@@ -156,4 +156,3 @@ lora-finetune-nim/
 
 MIT
 
- 
