@@ -1,0 +1,10 @@
+{"question": "How many days of annual leave do employees get?", "answer": "20 days"}
+{"question": "What is the sick leave entitlement per year?", "answer": "12 days"}
+{"question": "How many weeks parental leave for the primary caregiver?", "answer": "16 weeks"}
+{"question": "What is the home-office stipend?", "answer": "$500"}
+{"question": "How many days can employees work remotely per week?", "answer": "3 days"}
+{"question": "What is the receipt threshold for expenses?", "answer": "$25"}
+{"question": "What is the international meal allowance?", "answer": "$80"}
+{"question": "What does LoRA stand for conceptually?", "answer": "Low-Rank Adaptation"}
+{"question": "What quantization method is used during training?", "answer": "4-bit QLoRA"}
+{"question": "What GPU is recommended for training?", "answer": "T4"}

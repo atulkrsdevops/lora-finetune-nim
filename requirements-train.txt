@@ -1,0 +1,10 @@
+# Install this on Colab/Kaggle T4 for training
+torch>=2.0.0
+transformers>=4.40.0
+peft>=0.10.0
+trl>=0.8.0
+bitsandbytes>=0.43.0
+datasets>=2.18.0
+accelerate>=0.29.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0

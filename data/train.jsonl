@@ -1,0 +1,50 @@
+{"question": "How many days of annual leave do full-time employees receive?", "answer": "Full-time employees receive 20 days of paid annual leave per year plus 10 public holidays."}
+{"question": "Can unused annual leave be carried over?", "answer": "Yes, up to 5 unused days may be carried into the next calendar year."}
+{"question": "How many sick days are employees entitled to?", "answer": "Employees are entitled to 12 sick days per year. Sick leave does not carry over."}
+{"question": "When is a medical certificate required for sick leave?", "answer": "A medical certificate is required for absences longer than 3 consecutive days."}
+{"question": "How many weeks of parental leave does the primary caregiver receive?", "answer": "The primary caregiver receives 16 weeks of paid parental leave."}
+{"question": "How much parental leave does the secondary caregiver get?", "answer": "The secondary caregiver receives 4 weeks of paid parental leave."}
+{"question": "How many days per week can employees work remotely?", "answer": "Employees may work remotely up to 3 days per week with manager approval."}
+{"question": "What are the core hours for remote workers?", "answer": "Remote employees must be available during core hours of 10:00 to 16:00 in their team's primary time zone."}
+{"question": "What equipment does the company provide for remote work?", "answer": "The company provides a laptop and a one-time home-office stipend of $500."}
+{"question": "What is the internet reimbursement for fully remote staff?", "answer": "Fully remote staff receive $40 per month for internet reimbursement."}
+{"question": "Does international remote work require approval?", "answer": "Yes, international remote work requires HR and legal review and is approved on a case-by-case basis."}
+{"question": "Within how many days must expenses be submitted?", "answer": "Expenses must be submitted within 30 days of purchase through the finance portal."}
+{"question": "When is a receipt required for an expense?", "answer": "Receipts are required for any expense over $25."}
+{"question": "What class of airfare is approved for short flights?", "answer": "Economy airfare is approved for flights under 6 hours."}
+{"question": "What is the domestic daily meal allowance?", "answer": "The domestic daily meal allowance is $60."}
+{"question": "What is the international daily meal allowance?", "answer": "The international daily meal allowance is $80."}
+{"question": "What approval is needed for software purchases over $200?", "answer": "Software purchases over $200 require approval from an engineering manager."}
+{"question": "What is the home-office stipend amount?", "answer": "The one-time home-office stipend is $500."}
+{"question": "Can employees carry over more than 5 days of annual leave?", "answer": "No, only up to 5 unused days may be carried over. Any excess is forfeited."}
+{"question": "What type of leave does not carry over year to year?", "answer": "Sick leave does not carry over from year to year."}
+{"question": "Is premium economy allowed for long flights?", "answer": "Yes, premium economy is permitted for flights over 6 hours with manager approval."}
+{"question": "How is the remote work policy applied to fully remote roles?", "answer": "Fully remote arrangements are available for roles designated as remote-eligible in the job system."}
+{"question": "What happens to sick leave at the end of the year?", "answer": "Sick leave does not carry over and is forfeited at the end of the year."}
+{"question": "What is the total number of leave days including public holidays?", "answer": "Full-time employees receive 20 days annual leave plus 10 public holidays, totalling 30 days."}
+{"question": "What portal is used to submit expenses?", "answer": "Expenses are submitted through the finance portal."}
+{"question": "How long does an employee have to submit an expense claim?", "answer": "Expense claims must be submitted within 30 days of the purchase date."}
+{"question": "What is QLoRA?", "answer": "QLoRA combines quantization and LoRA. The base model is loaded in 4-bit precision and LoRA adapters are trained in float16, enabling fine-tuning on consumer GPUs."}
+{"question": "What base model is used for fine-tuning?", "answer": "The base model is TinyLlama/TinyLlama-1.1B-Chat-v1.0, chosen for its small size and free T4 GPU compatibility."}
+{"question": "What quantization is used during training?", "answer": "4-bit quantization with NF4 quant type and float16 compute dtype is used to fit the model on a T4 GPU."}
+{"question": "How many epochs is the model trained for?", "answer": "The model is trained for 3 epochs with a learning rate of 2e-4 and batch size of 4."}
+{"question": "What does PEFT stand for?", "answer": "PEFT stands for Parameter-Efficient Fine-Tuning. It allows fine-tuning large models by updating only a small number of additional parameters."}
+{"question": "What is the advantage of LoRA over full fine-tuning?", "answer": "LoRA freezes the pre-trained weights and injects small trainable rank decomposition matrices, reducing trainable parameters and GPU memory required."}
+{"question": "Where is the trained adapter saved?", "answer": "The trained adapter is saved to the adapters/hr-policy-lora directory and loaded on top of the base model for inference."}
+{"question": "What GPU is recommended for training this model?", "answer": "A free T4 GPU on Google Colab or Kaggle is sufficient for training TinyLlama with LoRA."}
+{"question": "What is perplexity in language model evaluation?", "answer": "Perplexity measures how well a language model predicts a sample. Lower perplexity means better prediction. Fine-tuning on domain data typically lowers perplexity significantly."}
+{"question": "What target modules are used for LoRA?", "answer": "LoRA is applied to q_proj and v_proj, the query and value projection matrices in the attention layers."}
+{"question": "What training framework is used?", "answer": "The training uses HuggingFace Transformers, PEFT, and TRL SFTTrainer for supervised fine-tuning."}
+{"question": "What is supervised fine-tuning?", "answer": "Supervised fine-tuning trains a pre-trained model on labelled input-output pairs to specialise it for a specific task or domain."}
+{"question": "How many trainable parameters does LoRA add?", "answer": "With r=8 on q_proj and v_proj of TinyLlama, LoRA adds approximately 0.5 to 1 percent of the total parameter count as trainable parameters."}
+{"question": "What is the batch size used during training?", "answer": "The batch size is 4 per device, suitable for a T4 GPU with 16GB VRAM when using 4-bit quantization."}
+{"question": "Can this fine-tuning approach be applied to larger models?", "answer": "Yes, the same QLoRA approach scales to larger models like Llama-3 8B on an A100, or Llama-3 70B with a multi-GPU setup."}
+{"question": "What is the lora_dropout value?", "answer": "The LoRA dropout is 0.05, applied to the adapter layers during training to prevent overfitting on the small dataset."}
+{"question": "What is the learning rate used for fine-tuning?", "answer": "The learning rate is 2e-4, a common starting point for LoRA fine-tuning with the AdamW optimizer."}
+{"question": "What is the max sequence length during training?", "answer": "The maximum sequence length is 512 tokens, sufficient for the HR policy Q&A format used in this dataset."}
+{"question": "What dataset format is used?", "answer": "The dataset is stored as JSONL files with question and answer fields, formatted into TinyLlama chat template during training."}
+{"question": "How is the validation split configured?", "answer": "Ten percent of the training data is held out as a validation set, configured via the val_split setting."}
+{"question": "What is the difference between the base model and the fine-tuned model?", "answer": "The base model is a general-purpose pre-trained LLM. The fine-tuned model has LoRA adapter weights trained on domain data, improving accuracy on that domain."}
+{"question": "How do you load the adapter for inference?", "answer": "Use PeftModel.from_pretrained to load the adapter on top of the base model, then call model.generate for inference."}
+{"question": "Can the fine-tuned adapter be used without the base model?", "answer": "No, the LoRA adapter must be loaded on top of the base model. The adapter only contains the weight deltas, not the full model weights."}
+{"question": "What is the LoRA rank used in this fine-tune?", "answer": "The LoRA rank is r=8 with alpha=16, applied to q_proj and v_proj layers of TinyLlama."}
