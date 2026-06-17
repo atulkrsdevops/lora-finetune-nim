@@ -28,9 +28,15 @@ Covers **NCP-AAI**: Evaluation & Tuning.
 
 ---
 
+## Preprocessing
+
+![Preprocessing: dataset stats and sample formatted prompt](docs/screenshots/cmd.jpg)
+
+---
+
 ## Training
 
-![Training: loss dropping across 3 epochs on T4 GPU](docs/screenshots/training.jpg)
+![Training: loss dropping across 3 epochs on T4 GPU](docs/screenshots/table.jpg)
 
 ```text
 Model : TinyLlama/TinyLlama-1.1B-Chat-v1.0
@@ -51,21 +57,34 @@ from 64% to 74%, confirming the model is learning the HR domain.
 
 ---
 
-## Before / After Evaluation
+## Before Evaluation (base model)
 
-![Eval output: before and after fine-tune accuracy](docs/screenshots/eval.jpg)
+![Before fine-tune: base model accuracy 0/10](docs/screenshots/Before eval.jpg)
 
 ```text
 Before fine-tune (base model) : 0/10  (0%)
-After fine-tune  (+ adapter)  : 1/10  (10%)
 ```
 
-**What the results show:** The base model had zero domain knowledge —
-it hallucinated answers for every HR policy question. After fine-tuning,
-the model correctly answers domain questions (e.g. annual leave days)
-but still hallucinates specific numbers on some questions (18 weeks
-instead of 16, $1,000 instead of $500). This is expected behaviour
-for a 1.1B model trained on only 50 examples for 3 epochs.
+The base model had zero domain knowledge — it hallucinated answers
+for every HR policy question.
+
+---
+
+## After Evaluation (fine-tuned adapter)
+
+![After fine-tune: accuracy with LoRA adapter](docs/screenshots/After eval.jpg)
+
+![After fine-tune continued](docs/screenshots/After eval1.jpg)
+
+```text
+After fine-tune (+ LoRA adapter) : 1/10  (10%)
+```
+
+**What the results show:** After fine-tuning, the model correctly
+answers some domain questions but still hallucinates specific numbers
+on others (18 weeks instead of 16, $1,000 instead of $500). This is
+expected behaviour for a 1.1B model trained on only 50 examples for
+3 epochs.
 
 **How to improve:** Increasing to 200+ examples and 10 epochs would
 significantly improve number recall. The training infrastructure
@@ -119,18 +138,18 @@ python -m src.infer --question "What is the parental leave policy?"
 ```
 lora-finetune-nim/
 ├── src/
-│   ├── settings.py     # config: model, LoRA rank, training args
-│   ├── preprocess.py   # load, tokenize, format dataset
-│   ├── train.py        # QLoRA fine-tuning loop
-│   ├── evaluate.py     # before/after accuracy comparison
-│   └── infer.py        # load base + adapter, run inference
+│   ├── settings.py           # config: model, LoRA rank, training args
+│   ├── preprocess.py         # load, tokenize, format dataset
+│   ├── train.py              # QLoRA fine-tuning loop
+│   ├── evaluate.py           # before/after accuracy comparison
+│   └── infer.py              # load base + adapter, run inference
 ├── data/
-│   ├── train.jsonl     # 50 HR policy Q&A pairs
-│   └── eval.jsonl      # 10 held-out eval pairs
+│   ├── train.jsonl           # 50 HR policy Q&A pairs
+│   └── eval.jsonl            # 10 held-out eval pairs
 ├── requirements.txt          # local deps (no GPU)
 ├── requirements-train.txt    # GPU training deps
-├── tests/              # offline smoke tests
-└── .github/workflows/  # CI pipeline
+├── tests/                    # offline smoke tests
+└── .github/workflows/        # CI pipeline
 ```
 
 ## License
